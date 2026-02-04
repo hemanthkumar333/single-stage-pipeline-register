@@ -40,7 +40,6 @@ module tb_single_stage_pipe_reg;
         in_valid  = 1;
         in_data   = 32'hA5A4_A3A2;
         out_ready = 1;
-
         @(posedge clk);
         in_valid = 0;
 
@@ -49,12 +48,9 @@ module tb_single_stage_pipe_reg;
         in_valid  = 1;
         in_data   = 32'hA5A4_A3A1;
         out_ready = 0;
-
         repeat (3) @(posedge clk);
-
         // Release backpressure
         out_ready = 1;
-
         @(posedge clk);
         in_valid = 0;
 
@@ -66,10 +62,8 @@ module tb_single_stage_pipe_reg;
         in_valid  = 1;
         in_data   = 32'hABCD_DCBA;
         out_ready = 1;
-
         @(posedge clk);
         in_data   = 32'hABCD_ABCD;
-
         @(posedge clk);
         in_valid = 0;
 
@@ -79,10 +73,8 @@ module tb_single_stage_pipe_reg;
     end
 
     always @(posedge clk) begin
-        $display(
-            "T=%0t | in_v=%b in_r=%b in_d=%h | out_v=%b out_r=%b out_d=%h",$time, in_valid, in_ready, in_data,
-            out_valid, out_ready, out_data
-        );
+        $display("T=%0t | in_v=%b in_r=%b in_d=%h | out_v=%b out_r=%b out_d=%h",$time, in_valid, in_ready, in_data, out_valid, out_ready, out_data);
     end
 
 endmodule
+
